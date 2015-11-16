@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+
+    <ui:define name="body">
+        <p:dataTable id="dataTable" var="reg" 
+                     value="#{paisMB.listar()}"
+                     rowKey="#{reg.idPais}"
+                     paginator="true"
+                     rows="10"
+                     rowsPerPageTemplate="10,25,50"
+                     >  
+            <f:facet name="header">  
+                Lista de Países
+            </f:facet>  
+
+            <p:column>  
+                <f:facet name="header">  
+                    <h:outputText value="#{bundle.Codigo}" />  
+                </f:facet>  
+                <h:outputText value="#{reg.idPais}" />  
+            </p:column>  
+            <p:column>  
+                <f:facet name="header">  
+                    <h:outputText value="#{bundle.Pais}" />  
+                </f:facet>  
+                <h:outputText value="#{reg.nome}" />  
+            </p:column>  
+            <p:column>  
+                <f:facet name="header">  
+                    <h:outputText value="#{bundle.Acao}" />  
+                </f:facet>
+                <p:commandButton icon="ui-icon-pencil" value="#{bundle.Editar}" 
+                        ajax="false" actionListener="#{paisMB.editar(reg)}" action="/pais/editar" />
+                <p:commandButton icon="ui-icon-trash" value="#{bundle.Remover}" onclick="if(!confirm('Deseja mesmo excluir?')) {return false;}"
+                                 ajax="false" actionListener="#{paisMB.excluir(reg)}" update=":growl,datalist"  disabled="#{empty paisMB.pais}"/>
+            </p:column>
+
+            
+            <f:facet name="footer">
+                <p:commandButton icon="ui-icon-plus" value="#{bundle.Novo}" 
+                                 ajax="false" actionListener="#{paisMB.limpar()}" action="/pais/criar"/>
+            </f:facet>
+        </p:dataTable>
+    </ui:define>
+
+</ui:composition>

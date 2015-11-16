@@ -1,0 +1,78 @@
+.ui-widget {
+    font-size: 12px !important;
+}
+.ui-layout-north {
+    z-index: 20 !important;
+    overflow: visible !important;;
+}
+.ui-layout-north .ui-layout-unit-content {
+    overflow: visible !important;
+}
+.ui-widget-header {
+    text-align: center;
+    text-transform: uppercase;
+}
+.ui-button {
+    margin-top: 10px !important;
+}
+
+
+/* CABEÃ‡ALHO E RODAPÃ‰ ********************************************** */
+#nome_aplicacao {
+    padding: 0.32em;
+    font-size: 32pt;
+    font-family: 'Bangers', cursive;
+}
+#usuario_logado {
+    float: right;
+    padding: 1.4em;
+}
+.cabecalho {
+    background-color: #D1D1D1;
+    height: 100px;
+}
+.rodape {
+    background-color: #D1D1D1;
+    height: 40px;
+    font-size: 9pt;
+    padding-left: 1em;
+}
+
+/* MENU *************************************************************** */
+.menu {
+    background-color: white;
+    padding-left: 0.2em;
+}
+.menu_modulo {
+    font-size: 12pt;
+    font-weight: bold;
+}
+.menu_sub {
+    padding-left: 0.8em;
+}
+
+/* DECK DE BOTÃ•ES E PÃ�GINA INTERNA *********************************** */
+.deck {
+    border-bottom: 1px #e3e3e3 solid;
+}
+#titulo_deck {
+    font-weight: bold;
+    font-size: 1.2em;
+    padding-bottom: 0.8em;
+}
+.tabela_lista {
+    width: 100%;
+}
+.centralized {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    float: none !important;
+}
+
+table.border-none td {
+    border-color: transparent;
+}
+
+.error_msg {
+    color: red;
+}

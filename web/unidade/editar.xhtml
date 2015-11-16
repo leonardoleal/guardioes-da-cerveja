@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      template="../template.xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+        <ui:define name="body">
+            <h4>Edição de País</h4>
+            <h:panelGrid columns="2">
+                Código: <p:inputText value="#{unidadeMB.unidade.idUnidade}" readonly="true">
+                    <f:convertNumber integerOnly="true"/> 
+                </p:inputText>
+                
+                * Descrição <p:inputText label="Descricao" value="#{unidadeMB.unidade.descricao}" required="true" size="40" />
+
+                <p:commandButton value="Salvar" ajax="false" action="#{unidadeMB.salvar()}" />
+                <p:commandButton value="Cancelar" ajax="false" actionListener="#{unidadeMB.limpar()}"
+                                 action="/unidade/listar" immediate="true" />
+
+                <h:inputHidden value="#{unidadeMB.unidade.idUnidade}" >
+                    <f:convertNumber integerOnly="true"/> 
+                </h:inputHidden>
+            </h:panelGrid>
+        </ui:define>
+
+</ui:composition>
