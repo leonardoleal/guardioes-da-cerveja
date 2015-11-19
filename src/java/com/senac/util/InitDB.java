@@ -1,26 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.senac.util;
 
 import com.senac.bean.Pais;
-import java.io.IOException;
-import java.io.PrintWriter;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author leonardo
- */
 @WebServlet(name = "InitDB", urlPatterns = {"/InitDB"}, loadOnStartup = 1)
 public class InitDB extends HttpServlet {
 

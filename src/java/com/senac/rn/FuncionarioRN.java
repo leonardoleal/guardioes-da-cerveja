@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.senac.rn;
 
 import com.senac.bean.Funcionario;
@@ -10,10 +5,6 @@ import com.senac.db.FuncionarioDB;
 import com.senac.util.CrudGenerico;
 import java.util.List;
 
-/**
- *
- * @author leonardo
- */
 public class FuncionarioRN implements CrudGenerico<Funcionario>{
 
     private FuncionarioDB funcionarioDB;

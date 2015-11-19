@@ -1,19 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.senac.rn;
 
 import com.senac.bean.Cliente;
 import com.senac.db.ClienteDB;
 import com.senac.util.CrudGenerico;
 import java.util.List;
+import javax.jws.WebService;
 
-/**
- *
- * @author leonardo
- */
+@WebService
 public class ClienteRN implements CrudGenerico<Cliente>{
 
     private ClienteDB clienteDB;
