@@ -34,21 +34,23 @@
                             <p:menuitem value="Sair" actionListener="#{sessionMB.deslogar()}" />
                             <p:submenu label="Menu">
                                 <p:menuitem value="Cliente" outcome="/cliente/listar" />
+                                <p:menuitem value="Funcionario" outcome="/funcionario/listar" />
                                 <p:menuitem value="Pais" outcome="/pais/listar" />
                                 <p:menuitem value="Unidade" outcome="/unidade/listar" />
                             </p:submenu>
                         </p:menu>
                     </p:layoutUnit>
-                                <!--<p:menuitem value="Funcionario" outcome="#" />-->
-                                <!--<p:menuitem value="Pedido" outcome="#" />-->
-                                <!--<p:menuitem value="Produto" outcome="#" />-->
+                                <!--
+                                <p:menuitem value="Pedido" outcome="#" />
+                                <p:menuitem value="Produto" outcome="/produto/listar" />
+                                -->
 
                     <p:layoutUnit position="center">
-                        <p:messages autoUpdate="true" closable="true" />
-                    </p:layoutUnit>
+                        <ui:insert name="body"/>
 
-                    <p:layoutUnit position="center">
-                            <ui:insert name="body"/>
+                        <div style="width: 100%; display: block">
+                            <p:messages autoUpdate="true" closable="true" />
+                        </div>
                     </p:layoutUnit>
 
                 </p:layout>

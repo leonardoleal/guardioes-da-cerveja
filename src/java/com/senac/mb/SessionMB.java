@@ -62,6 +62,7 @@ public class SessionMB {
         }
     }
 
+    // @TODO Validar no Banco
     public String validarLogin() {
         if ("123456".equals(this.usuario.getCpf())
             && "123456".equals(this.usuario.getSenha())) {
