@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      template="../template.xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+        <ui:define name="body">
+            <h4>Edição de Produto</h4>
+            <h:panelGrid columns="2">
+                Código: <p:inputText value="#{produtoMB.produto.idProduto}" readonly="true">
+                    <f:convertNumber integerOnly="true"/> 
+                </p:inputText>
+
+                * Nome <p:inputText label="Nome" value="#{produtoMB.produto.nome}" required="true" size="40" />
+                * Descrição <p:inputText label="Descrição" value="#{produtoMB.produto.descricao}" required="true" size="40" />
+                * Valor
+                <p:inputText label="Valor" value="#{produtoMB.produto.valor}" required="true" size="40">
+                    <f:validateDoubleRange minimum="0.01" />
+                </p:inputText>
+
+                * Unidade 
+                <p:selectOneMenu label="Unidade" value="#{produtoMB.produto.unidade}" effect="fade" var="u"
+                                    converter="unidadeConverter" filter="true" filterMatchMode="contains">
+                    <f:selectItems value="#{unidadeMB.listar()}" var="unidade"
+                                   itemLabel="#{unidade.descricao}"
+                                   itemValue="#{unidade}" />
+
+                    <p:column>
+                        <h:outputText value="#{u.idUnidade}" />
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="#{u.descricao}" />
+                    </p:column>
+                </p:selectOneMenu>
+                
+                * País 
+                <p:selectOneMenu label="País" value="#{produtoMB.produto.pais}" effect="fade" var="p"
+                                    converter="paisConverter" filter="true" filterMatchMode="contains">
+                    <f:selectItems value="#{paisMB.listar()}" var="pais"
+                                   itemLabel="#{pais.nome}"
+                                   itemValue="#{pais}" />
+
+                    <p:column>
+                        <h:outputText value="#{p.idPais}" />
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="#{p.nome}" />
+                    </p:column>
+                </p:selectOneMenu>
+
+
+                <p:commandButton value="Salvar" ajax="false" action="#{produtoMB.salvar()}" />
+                <p:commandButton value="Cancelar" ajax="false" actionListener="#{produtoMB.limpar()}"
+                                 action="/produto/listar" immediate="true" />
+
+                <h:inputHidden value="#{produtoMB.produto.idProduto}" >
+                    <f:convertNumber integerOnly="true"/> 
+                </h:inputHidden>
+            </h:panelGrid>
+        </ui:define>
+
+</ui:composition>

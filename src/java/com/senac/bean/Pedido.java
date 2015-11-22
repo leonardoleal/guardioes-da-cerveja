@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,10 +47,10 @@ public class Pedido implements Serializable {
     private Collection<Produto> produtos;
     @JoinColumn(name = "id_funcionario", referencedColumnName = "id_funcionario")
     @ManyToOne(optional = false)
-    private Funcionario idFuncionario;
+    private Funcionario funcionario;
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
     @ManyToOne(optional = false)
-    private Cliente idCliente;
+    private Cliente cliente;
 
     public Pedido() {
     }
@@ -90,20 +89,20 @@ public class Pedido implements Serializable {
         this.produtos = produtoCollection;
     }
 
-    public Funcionario getIdFuncionario() {
-        return idFuncionario;
+    public Funcionario getFuncionario() {
+        return funcionario;
     }
 
-    public void setIdFuncionario(Funcionario idFuncionario) {
-        this.idFuncionario = idFuncionario;
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 
-    public Cliente getIdCliente() {
-        return idCliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setIdCliente(Cliente idCliente) {
-        this.idCliente = idCliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override

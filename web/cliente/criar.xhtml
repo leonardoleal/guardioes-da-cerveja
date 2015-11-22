@@ -12,9 +12,9 @@
             <h:panelGrid columns="2">
                 Código: <p:inputText value="AUTOMÁTICO" readonly="true" />
                 * Nome <p:inputText label="Nome" value="#{clienteMB.cliente.nome}" required="true" size="40" />
-                * Sobrenome <p:inputText label="Nome" value="#{clienteMB.cliente.sobrenome}" required="true" size="40" />
-                * Email <p:inputText label="Nome" value="#{clienteMB.cliente.email}" required="true" size="40" />
-                * CPF <p:inputText label="Nome" value="#{clienteMB.cliente.cpf}" required="true" size="40" />
+                * Sobrenome <p:inputText label="Sobrenome" value="#{clienteMB.cliente.sobrenome}" required="true" size="40" />
+                * Email <p:inputText label="Email" value="#{clienteMB.cliente.email}" required="true" size="40" />
+                * CPF <p:inputText label="CPF" value="#{clienteMB.cliente.cpf}" required="true" size="40" />
 
                 <p:commandButton value="Salvar" ajax="false" action="#{clienteMB.salvar()}" />
                 <p:commandButton value="Cancelar" ajax="false" actionListener="#{clienteMB.limpar()}"

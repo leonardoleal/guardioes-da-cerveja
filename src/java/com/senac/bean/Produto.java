@@ -54,15 +54,14 @@ public class Produto implements Serializable {
     @NotNull
     @Column(name = "valor")
     private BigDecimal valor;
-    @Basic(optional = true)
     @ManyToMany(mappedBy = "produtos")
     private Collection<Pedido> pedidos;
     @JoinColumn(name = "id_pais", referencedColumnName = "id_pais")
     @ManyToOne(optional = false)
-    private Pais idPais;
+    private Pais pais;
     @JoinColumn(name = "id_unidade", referencedColumnName = "id_unidade")
     @ManyToOne(optional = false)
-    private Unidade idUnidade;
+    private Unidade unidade;
 
     public Produto() {
     }
@@ -119,20 +118,20 @@ public class Produto implements Serializable {
         this.pedidos = pedidoCollection;
     }
 
-    public Pais getIdPais() {
-        return idPais;
+    public Pais getPais() {
+        return pais;
     }
 
-    public void setIdPais(Pais idPais) {
-        this.idPais = idPais;
+    public void setPais(Pais pais) {
+        this.pais = pais;
     }
 
-    public Unidade getIdUnidade() {
-        return idUnidade;
+    public Unidade getUnidade() {
+        return unidade;
     }
 
-    public void setIdUnidade(Unidade idUnidade) {
-        this.idUnidade = idUnidade;
+    public void setUnidade(Unidade unidade) {
+        this.unidade = unidade;
     }
 
     @Override

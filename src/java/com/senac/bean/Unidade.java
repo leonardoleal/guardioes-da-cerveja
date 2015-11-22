@@ -37,7 +37,7 @@ public class Unidade implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "descricao")
     private String descricao;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUnidade")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidade")
     private Collection<Produto> produtoCollection;
 
     public Unidade() {

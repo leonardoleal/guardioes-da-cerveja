@@ -62,7 +62,7 @@ public class Funcionario implements Serializable {
     @Size(min = 1, max = 32)
     @Column(name = "senha")
     private String senha;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFuncionario")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "funcionario")
     private Collection<Pedido> pedidoCollection;
 
     public Funcionario() {

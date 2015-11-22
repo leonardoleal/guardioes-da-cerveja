@@ -37,7 +37,7 @@ public class Pais implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "nome")
     private String nome;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPais")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pais")
     private Collection<Produto> produtoCollection;
 
     public Pais() {
