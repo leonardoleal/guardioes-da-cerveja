@@ -11,7 +11,15 @@
             <h4>Edição de País</h4>
             <h:panelGrid columns="2">
                 Código: <p:inputText value="AUTOMÁTICO" readonly="true" />
-                * Nome: <p:inputText label="Nome" value="#{paisMB.pais.nome}" required="true" size="40" />
+                * Nome: 
+                <p:selectOneMenu label="Nome" value="#{paisMB.pais.nome}" effect="fade" var="pa"
+                                   filter="true" filterMatchMode="contains">
+                    <f:selectItems value="#{paisMB.wsClientPaisListar()}" var="pais"
+                                   itemLabel="#{pais.nome}"
+                                   itemValue="#{pais.nome}" />
+
+            
+                </p:selectOneMenu>
 
                 <p:commandButton value="Salvar" ajax="false" action="#{paisMB.salvar()}" />
                 <p:commandButton value="Cancelar" ajax="false" actionListener="#{paisMB.limpar()}"

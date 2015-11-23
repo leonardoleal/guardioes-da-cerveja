@@ -3,9 +3,20 @@ package com.senac.mb;
 import com.senac.bean.Pais;
 import com.senac.rn.PaisRN;
 import com.senac.util.Mensagem;
+import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @ManagedBean
 @RequestScoped
@@ -63,5 +74,30 @@ public class PaisMB {
     
     public void limpar() {
         this.pais = new Pais();
+    }
+
+    public List<Pais> wsClientPaisListar() {
+        List<Pais> paises = new ArrayList<Pais>();
+        String url  = "http://services.groupkt.com/country/get/all";
+
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client.target(url);
+        Response retorno = target.request(MediaType.APPLICATION_JSON).get();
+
+        JsonReader reader = Json.createReader(
+                new StringReader(retorno.readEntity(String.class))
+        );
+        
+        JsonObject json = reader.readObject();
+        json = json.getJsonObject("RestResponse");
+        JsonArray jsonA = json.getJsonArray("result");
+        
+        for (int i = 0; i < jsonA.size(); i++) {
+            JsonObject jpais = jsonA.getJsonObject(i);
+            Pais pa = new Pais();
+            pa.setNome(jpais.getString("name"));
+            paises.add(pa);
+        }
+        return paises;
     }
 }
