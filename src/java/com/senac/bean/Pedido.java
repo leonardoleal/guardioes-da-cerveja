@@ -10,11 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -41,10 +40,8 @@ public class Pedido implements Serializable {
     @Column(name = "data")
     @Temporal(TemporalType.DATE)
     private Date data;
-    @ManyToMany
-    @JoinTable(name = "produto_pedido", joinColumns = {@JoinColumn(name = "id_pedido")},
-            inverseJoinColumns = {@JoinColumn(name = "id_produto")})
-    private Collection<Produto> produtos;
+    @OneToMany(mappedBy = "pedido")
+    private Collection<ProdutoPedido> produtoPedido;
     @JoinColumn(name = "id_funcionario", referencedColumnName = "id_funcionario")
     @ManyToOne(optional = false)
     private Funcionario funcionario;
@@ -81,12 +78,12 @@ public class Pedido implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Produto> getProdutoCollection() {
-        return produtos;
+    public Collection<ProdutoPedido> getProdutoPedido() {
+        return produtoPedido;
     }
 
-    public void setProdutoCollection(Collection<Produto> produtoCollection) {
-        this.produtos = produtoCollection;
+    public void setProdutoPedido(Collection<ProdutoPedido> produtoPedido) {
+        this.produtoPedido = produtoPedido;
     }
 
     public Funcionario getFuncionario() {

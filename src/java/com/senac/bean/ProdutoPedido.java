@@ -48,10 +48,10 @@ public class ProdutoPedido implements Serializable {
     private int quantidade;
     @JoinColumn(name = "id_produto", referencedColumnName = "id_produto")
     @ManyToOne(optional = false)
-    private Produto idProduto;
+    private Produto produto;
     @JoinColumn(name = "id_pedido", referencedColumnName = "id_pedido")
     @ManyToOne(optional = false)
-    private Pedido idPedido;
+    private Pedido pedido;
 
     public ProdutoPedido() {
     }
@@ -67,8 +67,8 @@ public class ProdutoPedido implements Serializable {
     }
 
     public ProdutoPedido(Pedido pedido, Produto produto, int quantidade) {
-        this.idPedido = pedido;
-        this.idProduto = produto;
+        this.pedido = pedido;
+        this.produto = produto;
         this.valorProduto = produto.getValor();
         this.quantidade = quantidade;
     }
@@ -97,20 +97,20 @@ public class ProdutoPedido implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public Produto getIdProduto() {
-        return idProduto;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setIdProduto(Produto idProduto) {
-        this.idProduto = idProduto;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
-    public Pedido getIdPedido() {
-        return idPedido;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setIdPedido(Pedido idPedido) {
-        this.idPedido = idPedido;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
     @Override

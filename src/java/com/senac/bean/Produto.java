@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -54,8 +52,8 @@ public class Produto implements Serializable {
     @NotNull
     @Column(name = "valor")
     private BigDecimal valor;
-    @ManyToMany(mappedBy = "produtos")
-    private Collection<Pedido> pedidos;
+    @OneToMany(mappedBy = "produto")
+    private Collection<ProdutoPedido> produtoPedido;
     @JoinColumn(name = "id_pais", referencedColumnName = "id_pais")
     @ManyToOne(optional = false)
     private Pais pais;
@@ -110,12 +108,12 @@ public class Produto implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Pedido> getPedidoCollection() {
-        return pedidos;
+    public Collection<ProdutoPedido> getProdutoPedido() {
+        return produtoPedido;
     }
 
-    public void setPedidoCollection(Collection<Pedido> pedidoCollection) {
-        this.pedidos = pedidoCollection;
+    public void setProdutoPedido(Collection<ProdutoPedido> produtoPedido) {
+        this.produtoPedido = produtoPedido;
     }
 
     public Pais getPais() {
