@@ -39,5 +39,8 @@ public class FuncionarioDB implements CrudGenerico<Funcionario>{
     public Funcionario consultar(Funcionario bean) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
+    public List<Funcionario> consultarCPFeSenha(Funcionario bean) {
+        return em.createNamedQuery("Funcionario.findByCPFeSenha").setParameter("cpf", bean.getCpf()).setParameter("senha",bean.getSenha()).getResultList();
+    }
 }

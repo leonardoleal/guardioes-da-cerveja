@@ -1,7 +1,9 @@
 package com.senac.mb;
 
 import com.senac.bean.Funcionario;
+import com.senac.db.FuncionarioDB;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
@@ -21,7 +23,6 @@ public class SessionMB {
     public SessionMB() {
         this.logado = false;
         this.usuario = new Funcionario();
-        this.usuario.setNome("Joao Silva");
     }
 
     public void setUsuario(String usuario) {
@@ -31,7 +32,15 @@ public class SessionMB {
     public String getUsuario() {
         return this.usuario.getCpf();
     }
+
+    public void setNome(String nome) {
+        this.usuario.setNome(nome);
+    }
     
+    public String getNome() {
+        return this.usuario.getNome();
+    }
+ 
     public void setSenha(String senha) {
         this.usuario.setSenha(senha);
     }
@@ -55,10 +64,13 @@ public class SessionMB {
 
     // @TODO Validar no Banco
     public String validarLogin() {
-        if ("123456".equals(this.usuario.getCpf())
-            && "123456".equals(this.usuario.getSenha())) {
-                this.logado = true;
-                return "template";
+        FuncionarioDB funcionarioDB = new FuncionarioDB();
+        List<Funcionario> funcionarios = funcionarioDB.consultarCPFeSenha(this.usuario);
+
+        if ( !funcionarios.isEmpty() ) {
+            this.usuario.setNome(funcionarios.get(0).getNome());
+            this.logado = true;
+            return "template";
         } else {
             this.logado = false;
             FacesContext.getCurrentInstance().addMessage(
@@ -72,7 +84,7 @@ public class SessionMB {
     public void deslogar() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/GDC/faces/index.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../faces/index.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(Funcionario.class.getName()).log(Level.SEVERE, null, ex);
         }

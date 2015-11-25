@@ -31,7 +31,7 @@
 
                     <p:layoutUnit position="west" size="175" header="Menu" collapsible="true">
                         <p:menu>
-                            <p:menuitem value="Sair" actionListener="#{sessionMB.deslogar()}" />
+                            <p:menuitem value="Sair [#{sessionMB.nome}]" actionListener="#{sessionMB.deslogar()}" />
                             <p:submenu label="Menu">
                                 <p:menuitem value="Cliente" outcome="/cliente/listar" />
                                 <p:menuitem value="Funcionario" outcome="/funcionario/listar" />
