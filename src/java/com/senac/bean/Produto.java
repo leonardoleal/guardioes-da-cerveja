@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -52,7 +53,7 @@ public class Produto implements Serializable {
     @NotNull
     @Column(name = "valor")
     private BigDecimal valor;
-    @OneToMany(mappedBy = "produto")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
     private Collection<ProdutoPedido> produtoPedido;
     @JoinColumn(name = "id_pais", referencedColumnName = "id_pais")
     @ManyToOne(optional = false)
@@ -154,7 +155,7 @@ public class Produto implements Serializable {
 
     @Override
     public String toString() {
-        return "com.senac.db.Produto[ idProduto=" + idProduto + " ]";
+        return "com.senac.bean.Produto[ idProduto=" + idProduto + " ]";
     }
     
 }

@@ -29,7 +29,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "produto_pedido")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ProdutoPedido.findAll", query = "SELECT p FROM ProdutoPedido p")})
+    @NamedQuery(name = "ProdutoPedido.findAll", query = "SELECT p FROM ProdutoPedido p"),
+    @NamedQuery(name = "ProdutoPedido.findByIdProdutoPedido", query = "SELECT p FROM ProdutoPedido p WHERE p.idProdutoPedido = :idProdutoPedido"),
+    @NamedQuery(name = "ProdutoPedido.findByValorProduto", query = "SELECT p FROM ProdutoPedido p WHERE p.valorProduto = :valorProduto"),
+    @NamedQuery(name = "ProdutoPedido.findByQuantidade", query = "SELECT p FROM ProdutoPedido p WHERE p.quantidade = :quantidade")})
 public class ProdutoPedido implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -66,13 +69,6 @@ public class ProdutoPedido implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public ProdutoPedido(Pedido pedido, Produto produto, int quantidade) {
-        this.pedido = pedido;
-        this.produto = produto;
-        this.valorProduto = produto.getValor();
-        this.quantidade = quantidade;
-    }
-
     public Integer getIdProdutoPedido() {
         return idProdutoPedido;
     }
@@ -103,6 +99,7 @@ public class ProdutoPedido implements Serializable {
 
     public void setProduto(Produto produto) {
         this.produto = produto;
+        this.valorProduto = produto.getValor();
     }
 
     public Pedido getPedido() {

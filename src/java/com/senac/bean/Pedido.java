@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,7 +41,7 @@ public class Pedido implements Serializable {
     @Column(name = "data")
     @Temporal(TemporalType.DATE)
     private Date data;
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
     private Collection<ProdutoPedido> produtoPedido;
     @JoinColumn(name = "id_funcionario", referencedColumnName = "id_funcionario")
     @ManyToOne(optional = false)
@@ -124,7 +125,7 @@ public class Pedido implements Serializable {
 
     @Override
     public String toString() {
-        return "com.senac.db.Pedido[ idPedido=" + idPedido + " ]";
+        return "com.senac.bean.Pedido[ idPedido=" + idPedido + " ]";
     }
     
 }
