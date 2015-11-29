@@ -8,19 +8,30 @@
       xmlns:p="http://primefaces.org/ui">
 
         <ui:define name="body">
-            <h4>Edição de Funcionario</h4>
+            <h4>Novo Pedido</h4>
             <h:panelGrid columns="2">
                 Código: <p:inputText value="AUTOMÁTICO" readonly="true" />
-                * Nome <p:inputText label="Nome" value="#{funcionarioMB.funcionario.nome}" required="true" size="40" />
-                * Sobrenome <p:inputText label="Nome" value="#{funcionarioMB.funcionario.sobrenome}" required="true" size="40" />
-                * Email <p:inputText label="Nome" value="#{funcionarioMB.funcionario.email}" required="true" size="40" />
-                * CPF <p:inputText label="Nome" value="#{funcionarioMB.funcionario.cpf}" required="true" size="40" />
-                * SENHA <p:password label="Senha" value="#{funcionarioMB.funcionario.senha}" required="true" size="40" />
-                * CONFIRMAR SENHA <p:password label="Confirmar Senha" value="#{funcionarioMB.confirmaSenha}" required="true" size="40" />
+                * Cliente: 
+                <p:selectOneMenu label="Cliente" value="#{pedidoMB.pedido.cliente}" effect="fade" var="c"
+                                 filter="true" filterMatchMode="contains" converter="clienteConverter">
+                    <f:selectItems value="#{clienteMB.listar()}" var="cliente"
+                                   itemLabel="#{cliente.cpf} - #{cliente.nome} #{cliente.sobrenome}"
+                                   itemValue="#{cliente}" />
 
-                <p:commandButton value="Salvar" ajax="false" action="#{funcionarioMB.salvar()}" />
-                <p:commandButton value="Cancelar" ajax="false" actionListener="#{funcionarioMB.limpar()}"
-                                 action="/funcionario/listar" immediate="true" />
+                    <p:column>
+                        <h:outputText value="#{c.cpf}" />
+                    </p:column>
+                    
+                    <p:column>
+                        <h:outputText value="#{c.nome} #{c.sobrenome}" />
+                    </p:column>
+                </p:selectOneMenu>
+                * Data: <p:calendar label="Data" value="#{pedidoMB.pedido.data}" pattern="dd/MM/yyyy" mask="true"/>
+
+
+                <p:commandButton value="Salvar" ajax="false" action="#{pedidoMB.salvar()}" />
+                <p:commandButton value="Cancelar" ajax="false" actionListener="#{pedidoMB.limpar()}"
+                                 action="/pedido/listar" immediate="true" />
             </h:panelGrid>
         </ui:define>
 

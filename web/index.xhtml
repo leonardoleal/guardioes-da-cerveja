@@ -46,9 +46,9 @@
                         <h3>Login</h3>
                         <h:form id="formLogin" prependId="false" >
                             <h:panelGrid columns="2" class="border-none">
-                                CPF: <h:inputText id="cpf" value="#{sessionMB.usuario}" required="true" />
-                                Senha: <h:inputSecret id="senha" value="#{sessionMB.senha}" required="true" />
-                                <h:commandButton id="bntLogar" value="Salvar" action="#{sessionMB.validarLogin()}" />
+                                CPF: <p:inputMask label="CPF" value="#{sessionMB.usuario}" required="true" mask="999.999.999-99"/>
+                                Senha: <p:password label="Senha" id="senha" value="#{sessionMB.senha}" required="true" />
+                                <h:commandButton id="bntLogar" value="Entrar" action="#{sessionMB.validarLogin()}" />
                             </h:panelGrid>
                         </h:form>
                         <p:messages autoUpdate="true" closable="true" />

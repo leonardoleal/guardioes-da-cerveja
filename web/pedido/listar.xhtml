@@ -10,56 +10,54 @@
 
     <ui:define name="body">
         <p:dataTable id="dataTable" var="reg" 
-                     value="#{funcionarioMB.listar()}"
-                     rowKey="#{reg.idFuncionario}"
+                     value="#{pedidoMB.listar()}"
+                     rowKey="#{reg.idPedido}"
                      paginator="true"
                      rows="10"
                      rowsPerPageTemplate="10,25,50"
                      >  
             <f:facet name="header">  
-                Lista de Tipo de Funcionarios
+                Lista de Pedidos
             </f:facet>  
 
             <p:column>  
                 <f:facet name="header">  
                     <h:outputText value="#{bundle.Codigo}" />  
                 </f:facet>  
-                <h:outputText value="#{reg.idFuncionario}" />  
+                <h:outputText value="#{reg.idPedido}" />  
             </p:column>
             <p:column>
                 <f:facet name="header">  
-                    <h:outputText value="#{bundle.Nome}" />  
+                    <h:outputText value="#{bundle.Cliente}" />  
                 </f:facet>  
-                <h:outputText value="#{reg.nome} #{reg.sobrenome}" />  
+                <h:outputText value="#{reg.cliente.nome} #{reg.cliente.sobrenome}" />  
             </p:column>
             <p:column>
                 <f:facet name="header">  
-                    <h:outputText value="#{bundle.CPF}" />  
+                    <h:outputText value="#{bundle.Funcionario}" />  
                 </f:facet>  
-                <h:outputText value="#{reg.cpf}" />  
+                <h:outputText value="#{reg.funcionario.nome}" />  
             </p:column>
             <p:column>
                 <f:facet name="header">  
-                    <h:outputText value="#{bundle.Email}" />  
+                    <h:outputText value="#{bundle.Data}" />  
                 </f:facet>  
-                <h:outputText value="#{reg.email}" />  
+                <h:outputText value="#{reg.data}" >
+                    <f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+                </h:outputText>
             </p:column>
             <p:column>  
                 <f:facet name="header">  
                     <h:outputText value="#{bundle.Acao}" />  
                 </f:facet>
-                <p:commandButton icon="ui-icon-pencil" value="#{bundle.Editar}" 
-                                 ajax="false" actionListener="#{funcionarioMB.editar(reg)}" action="/funcionario/editar" />
-                <p:commandButton icon="ui-icon-trash" value="#{bundle.Remover}" onclick="if (!confirm('Deseja mesmo excluir?')) {
-                            return false;
-                        }"
-                                 ajax="false" actionListener="#{funcionarioMB.excluir(reg)}" update=":growl,datalist"  disabled="#{empty funcionarioMB.funcionario}"/>
+                <p:commandButton icon="ui-icon-note" value="#{bundle.Visualizar}" 
+                                 ajax="false" actionListener="#{pedidoMB.editar(reg)}" action="/pedido/editar" />
             </p:column>
 
 
             <f:facet name="footer">
                 <p:commandButton icon="ui-icon-plus" value="#{bundle.Novo}" 
-                                 ajax="false" actionListener="#{funcionarioMB.limpar()}" action="/funcionario/criar"/>
+                                 ajax="false" actionListener="#{funcionarioMB.limpar()}" action="/pedido/criar"/>
             </f:facet>
         </p:dataTable>
     </ui:define>
