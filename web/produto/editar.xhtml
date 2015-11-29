@@ -18,6 +18,7 @@
                 * Descrição <p:inputText label="Descrição" value="#{produtoMB.produto.descricao}" required="true" size="40" />
                 * Valor
                 <p:inputText label="Valor" value="#{produtoMB.produto.valor}" required="true" size="40">
+                    <f:convertNumber type="currency" />
                     <f:validateDoubleRange minimum="0.01" />
                 </p:inputText>
 

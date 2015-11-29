@@ -8,24 +8,65 @@
       xmlns:p="http://primefaces.org/ui">
 
         <ui:define name="body">
-            <h4>Edição de Funcionario</h4>
-            <h:panelGrid columns="2">
-                Código: <p:inputText value="#{funcionarioMB.funcionario.idFuncionario}" readonly="true">
-                    <f:convertNumber integerOnly="true"/> 
-                </p:inputText>
+            <h4>Edição de Pedido</h4>
+            <h:panelGrid columns="2" width="800px" >
+                Código: <h:outputText value="#{pedidoMB.pedido.idPedido}" />
                 
-                * Nome <p:inputText label="Nome" value="#{funcionarioMB.funcionario.nome}" required="true" size="40" />
-                * Sobrenome <p:inputText label="Nome" value="#{funcionarioMB.funcionario.sobrenome}" required="true" size="40" />
-                * Email <p:inputText label="Nome" value="#{funcionarioMB.funcionario.email}" required="true" size="40" />
-                * CPF <p:inputText label="Nome" value="#{funcionarioMB.funcionario.cpf}" required="true" size="40" />
-                * SENHA <p:password label="Senha" value="#{funcionarioMB.funcionario.senha}" required="true" size="40" />
-                * CONFIRMAR SENHA <p:password label="Confirmar Senha" value="#{funcionarioMB.confirmaSenha}" required="true" size="40" />
+                Cliente: <h:outputText value="#{pedidoMB.pedido.cliente.cpf} -
+                            #{pedidoMB.pedido.cliente.nome} #{pedidoMB.pedido.cliente.sobrenome}" />
+               
+                Data: <h:outputText value="#{pedidoMB.pedido.data}" >
+                    <f:convertDateTime pattern="dd/MM/yyyy" type="date"/>
+                </h:outputText>
 
-                <p:commandButton value="Salvar" ajax="false" action="#{funcionarioMB.salvar()}" />
-                <p:commandButton value="Cancelar" ajax="false" actionListener="#{funcionarioMB.limpar()}"
-                                 action="/funcionario/listar" immediate="true" />
+                <h:column>
+                    <f:attribute name="colspan" value="2"/>
+                    Produtos:
+                </h:column>
+                <h:column>
+                    <p:dataTable id="dataTable" var="reg"
+                                 value="#{pedidoMB.pedido.produtoPedido}">  
 
-                <h:inputHidden value="#{funcionarioMB.funcionario.idFuncionario}" >
+                        <p:column>  
+                            <f:facet name="header">  
+                                <h:outputText value="#{bundle.Codigo}" />  
+                            </f:facet>  
+                            <h:outputText value="#{reg.produto.idProduto}" />  
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">  
+                                <h:outputText value="#{bundle.Descricao}" />  
+                            </f:facet>  
+                            <h:outputText value="#{reg.produto.nome} - #{reg.produto.unidade.descricao}" />  
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">  
+                                <h:outputText value="#{bundle.Quantidade}" />  
+                            </f:facet>  
+                            <h:outputText value="#{reg.quantidade}" />  
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">  
+                                <h:outputText value="#{bundle.Valor}" />  
+                            </f:facet>  
+                            <h:outputText value="#{reg.valorProduto}">
+                                <f:convertNumber type="currency" />
+                            </h:outputText>
+                        </p:column>
+                        
+                        <f:facet name="footer">
+                                <h:outputText value="Total: " />
+                                <h:outputText value="#{pedidoMB.valorTotal}">
+                                    <f:convertNumber type="currency" />
+                                </h:outputText>
+                        </f:facet>
+                    </p:dataTable>
+                </h:column>
+
+                <p:commandButton value="Retornar" ajax="false" actionListener="#{pedidoMB.limpar()}"
+                                 action="/pedido/listar" immediate="true" />
+
+                <h:inputHidden value="#{pedidoMB.pedido.idPedido}" >
                     <f:convertNumber integerOnly="true"/> 
                 </h:inputHidden>
             </h:panelGrid>
