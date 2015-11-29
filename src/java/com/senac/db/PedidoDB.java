@@ -1,33 +1,33 @@
 package com.senac.db;
 
-import com.senac.bean.Cliente;
+import com.senac.bean.Pedido;
 import com.senac.util.CrudGenerico;
 import com.senac.util.EntidadeFactory;
 import java.util.List;
 
-public class ClienteDB extends EntidadeFactory implements CrudGenerico<Cliente>{
-
+public class PedidoDB extends EntidadeFactory implements CrudGenerico<Pedido>{
+    
     @Override
-    public void salvar(Cliente bean) {
+    public void salvar(Pedido bean) {
         em.getTransaction().begin();
         em.merge(bean);
         em.getTransaction().commit();
     }
 
     @Override
-    public void excluir(Cliente bean) {
+    public void excluir(Pedido bean) {
         em.getTransaction().begin();
-        em.remove(em.find(Cliente.class, bean.getIdCliente()));
+        em.remove(em.find(Pedido.class, bean.getIdPedido()));
         em.getTransaction().commit();
     }
 
     @Override
-    public List<Cliente> listar(Cliente bean) {
-        return em.createQuery("SELECT c FROM Cliente c").getResultList();
+    public List<Pedido> listar(Pedido bean) {
+        return em.createQuery("SELECT p FROM Pedido p").getResultList();
     }
 
     @Override
-    public Cliente consultar(Cliente bean) {
+    public Pedido consultar(Pedido bean) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

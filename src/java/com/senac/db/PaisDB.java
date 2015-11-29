@@ -2,20 +2,11 @@ package com.senac.db;
 
 import com.senac.bean.Pais;
 import com.senac.util.CrudGenerico;
+import com.senac.util.EntidadeFactory;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
-public class PaisDB implements CrudGenerico<Pais>{
+public class PaisDB extends EntidadeFactory implements CrudGenerico<Pais>{
 
-    private EntityManager em;
-
-    public PaisDB() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("guiadoservico7PU");
-        em = emf.createEntityManager();
-    }
-    
     @Override
     public void salvar(Pais bean) {
         em.getTransaction().begin();

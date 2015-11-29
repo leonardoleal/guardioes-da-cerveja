@@ -2,19 +2,10 @@ package com.senac.db;
 
 import com.senac.bean.Funcionario;
 import com.senac.util.CrudGenerico;
+import com.senac.util.EntidadeFactory;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
-public class FuncionarioDB implements CrudGenerico<Funcionario>{
-
-    private EntityManager em;
-
-    public FuncionarioDB() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("guiadoservico7PU");
-        em = emf.createEntityManager();
-    }
+public class FuncionarioDB extends EntidadeFactory implements CrudGenerico<Funcionario>{
     
     @Override
     public void salvar(Funcionario bean) {
