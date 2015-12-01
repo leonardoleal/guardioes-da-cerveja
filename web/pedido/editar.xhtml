@@ -19,49 +19,48 @@
                     <f:convertDateTime pattern="dd/MM/yyyy" type="date"/>
                 </h:outputText>
 
-                <h:column>
-                    <f:attribute name="colspan" value="2"/>
-                    Produtos:
-                </h:column>
-                <h:column>
-                    <p:dataTable id="dataTable" var="reg"
-                                 value="#{pedidoMB.pedido.produtoPedido}">  
+                Produtos:
+                <p:dataTable id="dataTable" var="reg"
+                             value="#{pedidoMB.pedido.produtoPedido}">  
 
-                        <p:column>  
-                            <f:facet name="header">  
-                                <h:outputText value="#{bundle.Codigo}" />  
-                            </f:facet>  
-                            <h:outputText value="#{reg.produto.idProduto}" />  
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">  
-                                <h:outputText value="#{bundle.Descricao}" />  
-                            </f:facet>  
-                            <h:outputText value="#{reg.produto.nome} - #{reg.produto.unidade.descricao}" />  
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">  
-                                <h:outputText value="#{bundle.Quantidade}" />  
-                            </f:facet>  
-                            <h:outputText value="#{reg.quantidade}" />  
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">  
-                                <h:outputText value="#{bundle.Valor}" />  
-                            </f:facet>  
-                            <h:outputText value="#{reg.valorProduto}">
-                                <f:convertNumber type="currency" />
-                            </h:outputText>
-                        </p:column>
-                        
-                        <f:facet name="footer">
-                                <h:outputText value="Total: " />
-                                <h:outputText value="#{pedidoMB.valorTotal}">
-                                    <f:convertNumber type="currency" />
-                                </h:outputText>
-                        </f:facet>
-                    </p:dataTable>
-                </h:column>
+                    <p:column headerText="#{bundle.Codigo}">  
+                        <h:outputText value="#{reg.produto.idProduto}" />
+                    </p:column>
+
+                    <p:column headerText="#{bundle.Descricao}">
+                        <h:outputText value="#{reg.produto.nome} - #{reg.produto.unidade.descricao}" />  
+                    </p:column>
+
+                    <p:column headerText="#{bundle.Quantidade}">
+                        <h:outputText value="#{reg.quantidade}" />  
+                    </p:column>
+
+                    <p:column headerText="#{bundle.Valor}">
+                        <h:outputText value="#{reg.valorProduto}">
+                            <f:convertNumber type="currency" />
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Subtotal">
+                        <h:outputText value="#{pedidoMB.valorTotalProduto(reg.valorProduto, reg.quantidade)}">
+                            <f:convertNumber type="currency" />
+                        </h:outputText>
+                    </p:column>
+
+                    <p:columnGroup type="footer">
+                        <p:row>
+                            <p:column footerText="Total: " colspan="4" style="text-align: right;">
+                            </p:column>
+                            <p:column style="text-align: right;">
+                                <f:facet name="footer">
+                                    <h:outputText value="#{pedidoMB.valorTotal}">
+                                        <f:convertNumber type="currency" />
+                                    </h:outputText>
+                                </f:facet>
+                            </p:column>
+                        </p:row>
+                    </p:columnGroup>
+                </p:dataTable>
 
                 <p:commandButton value="Retornar" ajax="false" actionListener="#{pedidoMB.limpar()}"
                                  action="/pedido/listar" immediate="true" />

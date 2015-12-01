@@ -1,6 +1,8 @@
 package com.senac.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -51,6 +53,8 @@ public class Pedido implements Serializable {
     private Cliente cliente;
 
     public Pedido() {
+        produtoPedido = new ArrayList<ProdutoPedido>();
+        produtoPedido.add(new ProdutoPedido(0, BigDecimal.ZERO, 0));
     }
 
     public Pedido(Integer idPedido) {

@@ -67,6 +67,14 @@ public class PedidoMB {
         this.pedido = new Pedido();
     }
 
+    public BigDecimal valorTotalProduto(BigDecimal valor, Integer quantidade) {
+        BigDecimal subTotal = BigDecimal.ZERO;
+        
+        subTotal = valor.multiply(new BigDecimal(quantidade));
+
+        return subTotal;
+    }
+
     public BigDecimal getValorTotal() {
         BigDecimal total = BigDecimal.ZERO;
         BigDecimal subTotal = BigDecimal.ZERO;

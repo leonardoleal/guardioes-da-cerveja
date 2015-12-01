@@ -9,7 +9,7 @@
 
         <ui:define name="body">
             <h4>Novo Pedido</h4>
-            <h:panelGrid columns="2">
+            <h:panelGrid columns="2" width="800px" >
                 Código: <p:inputText value="AUTOMÁTICO" readonly="true" />
                 * Cliente: 
                 <p:selectOneMenu label="Cliente" value="#{pedidoMB.pedido.cliente}" effect="fade" var="c"
@@ -28,6 +28,48 @@
                 </p:selectOneMenu>
                 * Data: <p:calendar label="Data" value="#{pedidoMB.pedido.data}" pattern="dd/MM/yyyy" mask="true"/>
 
+                Produtos:
+                <p:dataTable id="dataTable" var="reg"
+                             value="#{pedidoMB.pedido.produtoPedido}">  
+
+                    <p:column headerText="#{bundle.Codigo}">
+                        <p:selectOneMenu label="Descrição" value="#{reg.produto}" converter="produtoConverter">
+                            <f:selectItems value="#{produtoMB.listar()}" var="produto"
+                                           itemLabel="#{produto.idProduto} - #{produto.nome}"
+                                           itemValue="#{produto}" />
+                        </p:selectOneMenu>
+                    </p:column>
+
+                    <p:column headerText="#{bundle.Quantidade}">
+                        <p:inputText label="Quantidade" value="#{reg.quantidade}" />
+                    </p:column>
+
+                    <p:column headerText="#{bundle.Valor}">
+                        <p:inputText label="Valor" value="#{reg.valorProduto}" >
+                            <f:convertNumber type="currency" />
+                        </p:inputText>
+                    </p:column>
+
+                    <p:column headerText="Subtotal">
+                        <h:outputText value="#{pedidoMB.valorTotalProduto(reg.valorProduto, reg.quantidade)}">
+                            <f:convertNumber type="currency" />
+                        </h:outputText>
+                    </p:column>
+
+                    <p:columnGroup type="footer">
+                        <p:row>
+                            <p:column footerText="Subtotal: " colspan="3" style="text-align: right;">
+                            </p:column>
+                            <p:column style="text-align: right;">
+                                <f:facet name="footer">
+                                    <h:outputText value="#{pedidoMB.valorTotal}0">
+                                        <f:convertNumber type="currency" />
+                                    </h:outputText>
+                                </f:facet>
+                            </p:column>
+                        </p:row>
+                    </p:columnGroup>
+                </p:dataTable>
 
                 <p:commandButton value="Salvar" ajax="false" action="#{pedidoMB.salvar()}" />
                 <p:commandButton value="Cancelar" ajax="false" actionListener="#{pedidoMB.limpar()}"
